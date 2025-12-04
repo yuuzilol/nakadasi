@@ -1,102 +1,260 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>株式会社中田氏</title>
-<link rel="icon" href="https://i.imgur.com/akcbEQM.png">
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;500;700&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>株式会社中田氏</title>
+    <style>
+        /* --- 全体設定：ダークテーマ --- */
+        body {
+            font-family: 'Consolas', 'Courier New', 'M PLUS Rounded 1c', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a2e; /* 宇宙のような濃い青 */
+            color: #e0e0e0;
+            line-height: 1.6;
+            text-align: center;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* --- ネオン装飾 --- */
+        .neon-text {
+            color: #00ffff; /* シアンネオン */
+            text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff;
+        }
+        .accent-line {
+            display: block;
+            width: 80%;
+            height: 2px;
+            background-color: #ff00ff; /* マゼンタネオン */
+            box-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
+            margin: 10px auto 30px;
+        }
+        
+        /* --- ヘッダー --- */
+        header {
+            background-color: rgba(10, 10, 30, 0.8);
+            backdrop-filter: blur(5px); /* 透明感を出す */
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        nav a {
+            color: #00ffff;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 0.95em;
+            transition: color 0.2s;
+            text-transform: uppercase;
+        }
+        nav a:hover {
+            color: #ff00ff;
+            text-shadow: 0 0 5px #ff00ff;
+        }
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        /* --- メインビジュアル (HERO) --- */
+        #hero {
+            padding: 100px 0;
+            /* 背景はCSSグラデーションでサイバー感を出す */
+            background: radial-gradient(circle at center, #2c3e50 0%, #1a1a2e 70%);
+            margin-bottom: 40px;
+        }
+        #hero h1 {
+            font-size: 4em;
+            margin-bottom: 15px;
+            color: white;
+            letter-spacing: 5px;
+            text-shadow: 0 0 10px #00ffff;
+        }
+        #hero p {
+            font-size: 1.5em;
+            color: #bbbbff;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #ff00ff; /* マゼンタネオン */
+            color: #1a1a2e;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 50px; /* 丸みを帯びたボタン */
+            font-weight: bold;
+            margin-top: 30px;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px #ff00ff;
+        }
+        .cta-button:hover {
+            background-color: #00ffff;
+            color: #1a1a2e;
+            box-shadow: 0 0 20px #00ffff;
+        }
+        
+        /* --- セクションタイトル --- */
+        section {
+            padding: 60px 0;
+        }
+        h2 {
+            font-size: 2.5em;
+            color: white;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+        }
 
-  * { box-sizing: border-box; scroll-behavior: smooth; }
-  body { margin:0; font-family: 'Poppins', sans-serif; background:#111; color:#fff; }
-  a { text-decoration:none; color:inherit; }
+        /* --- メンバー紹介 (カードデザイン) --- */
+        .member-grid {
+            display: flex;
+            justify-content: space-around;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .member-card {
+            background-color: #2b2b4d; /* カードの背景を少し明るく */
+            border: 2px solid #ff00ff;
+            border-radius: 12px;
+            padding: 25px;
+            width: 300px;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .member-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 0 25px #00ffff;
+        }
+        .member-card h3 {
+            font-size: 1.5em;
+            color: #00ffff;
+            border-bottom: 1px solid rgba(255, 0, 255, 0.5);
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+        .member-card .role {
+            color: #ff00ff;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        /* --- 連絡先/SNS (サイバーパネル風) --- */
+        #contact-panel {
+            background-color: #0d0d1d;
+            border: 3px solid #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px auto;
+            max-width: 800px;
+        }
+        
+        /* --- フッター (ログ風) --- */
+        footer {
+            background-color: #000;
+            color: #00ff00; /* 緑のターミナルカラー */
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 40px;
+            font-size: 0.85em;
+            border-top: 1px solid #00ff00;
+        }
+        footer p {
+            margin: 5px 0;
+        }
+        footer a {
+            color: #00ff00;
+            text-decoration: none;
+            text-shadow: 0 0 3px #00ff00;
+        }
 
-  /* ヘッダー */
-  header { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.8); backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:space-between; padding:10px 40px; z-index:1000; }
-  header .logo { font-family:'Bebas Neue'; font-size:2em; color:#00ff9f; }
-  nav a { margin:0 15px; transition:0.3s; }
-  nav a:hover { color:#00ffdf; }
-
-  /* セクション */
-  section { padding:120px 20px; text-align:center; min-height:100vh; }
-  h2 { font-family:'Bebas Neue'; font-size:3em; color:#00ff9f; margin-bottom:20px; }
-
-  /* ゲーム企画 */
-  .games { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
-  .game-card { background:rgba(0,255,159,0.1); padding:20px; border-radius:12px; width:250px; transition:0.3s; }
-  .game-card:hover { transform:translateY(-10px); background:rgba(0,255,159,0.2); }
-
-  /* 実写動画ギャラリー */
-  .videos { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
-  .videos iframe { border-radius:12px; width:360px; height:200px; }
-
-  /* SNSリンク */
-  .socials { display:flex; justify-content:center; gap:20px; margin-top:30px; }
-  .socials a { padding:12px 20px; background:#00ff9f; border-radius:20px; color:#000; font-weight:700; transition:0.3s; }
-  .socials a:hover { background:#00ffdf; }
-
-  /* フッター */
-  footer { background:#000; padding:20px; text-align:center; color:#888; }
-
-  @media(max-width:600px){ .videos iframe { width:100%; height:200px; } }
-</style>
+        /* --- スマホ対応 (省略) --- */
+    </style>
 </head>
 <body>
 
-<header>
-  <div class="logo">株式会社中田氏</div>
-  <nav>
-    <a href="#games">企画</a>
-    <a href="#videos">実写</a>
-    <a href="#sns">SNS</a>
-  </nav>
-</header>
+    <header>
+        <div class="container nav-content">
+            <div class="logo neon-text">
+                // K.K.NAKATA //
+            </div>
+            <nav>
+                <a href="#about">MISSION</a>
+                <a href="#members">PERSONNEL</a>
+                <a href="#contact">ACCESS_LOG</a>
+            </nav>
+        </div>
+    </header>
 
-<section id="home" style="background:#111 url('https://i.imgur.com/akcbEQM.png') center/cover no-repeat;">
-  <h1 style="font-family:'Bebas Neue'; font-size:4em; color:#00ff9f;">遊びに来たね！</h1>
-  <p>参加型ゲームと実写動画をお届け中</p>
-</section>
-
-<section id="games">
-  <h2>参加型ゲーム企画</h2>
-  <div class="games">
-    <div class="game-card">
-      <h3>〇〇チャレンジ</h3>
-      <p>視聴者参加型オンラインゲーム。リアルタイムで盛り上がろう！</p>
+    <div id="hero">
+        <div>
+            <h1><span class="neon-text">// PROJECT: GAME SHIFT //</span></h1>
+            <p>株式会社中田氏は、ゲーム世界の<span class="neon-text">未踏領域</span>をデータ化し、未来の攻略法を実証します。</p>
+            <a href="https://www.youtube.com/@YOUR_CHANNEL_ID" target="_blank" class="cta-button">>> DEPLOY LATEST STREAM</a>
+        </div>
     </div>
-    <div class="game-card">
-      <h3>ドッキリ企画</h3>
-      <p>ゲーム中に隠された罠に挑戦！笑える展開が満載。</p>
-    </div>
-    <div class="game-card">
-      <h3>中田氏サバイバル</h3>
-      <p>みんなで協力して生き残れ！参加者募集中。</p>
-    </div>
-  </div>
-</section>
+    
+    <span class="accent-line"></span>
 
-<section id="videos">
-  <h2>実写動画</h2>
-  <div class="videos">
-    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="動画1" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/3JZ_D3ELwOQ" title="動画2" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" title="動画3" allowfullscreen></iframe>
-  </div>
-</section>
+    <section id="about" class="container">
+        <h2>:: CORE MISSION ::</h2>
+        <p style="font-size: 1.1em; line-height: 1.8; color: #aaaaaa;">
+            当社の存在意義は、**「ゲームを遊び尽くすこと」**ではありません。<br>
+            ゲームシステムを徹底的に**「解析し尽くすこと」**にあります。<br>
+            全てのプレイは、**視聴者への報告義務**を伴う厳密な**「事業」**です。
+        </p>
+    </section>
 
-<section id="sns">
-  <h2>SNSリンク</h2>
-  <div class="socials">
-    <a href="https://yuuuzi.pages.dev" target="_blank">HP1</a>
-    <a href="https://yuuzi.f5.si" target="_blank">HP2</a>
-    <a href="https://yuuzilol.f5.si" target="_blank">HP3</a>
-  </div>
-</section>
+    <section id="members" class="container">
+        <h2>:: PERSONNEL DATA ::</h2>
+        <div class="member-grid">
+            
+            <div class="member-card">
+                <h3>NAKATA TARO</h3>
+                <div class="role">Chief Executive Officer (CEO)</div>
+                <p>プロジェクトの最終決定権者。最もリスクの高い実証実験を自ら引き受けるリーダーシップを持つ。</p>
+            </div>
+            
+            <div class="member-card">
+                <h3>SUZUKI JIRO</h3>
+                <div class="role">Chief Technology Officer (CTO)</div>
+                <p>ゲーム内データを解析し、非効率なプレイを排除するシステム最適化のスペシャリスト。</p>
+            </div>
+            
+            <div class="member-card">
+                <h3>SATO HANAKO</h3>
+                <div class="role">Chief Marketing Officer (CMO)</div>
+                <p>外部との通信（SNS/コメント）を管理する広報部門の責任者。情報統制と拡散を担当。</p>
+            </div>
+            
+        </div>
+    </section>
 
-<footer>
-  © 2025 株式会社中田氏 | All Rights Reserved
-</footer>
+    <section id="contact" class="container">
+        <h2>:: ACCESS LOG ::</h2>
+        <div id="contact-panel">
+            <p style="color: #00ffff;">[NOTICE] 当社への機密情報提供（バグ報告、企画提案）は以下のチャネルを利用してください。</p>
+            <div style="margin-top: 25px;">
+                <a href="https://twitter.com/YOUR_TWITTER_ID" target="_blank" class="cta-button" style="background-color: #00ffff; color: #1a1a2e; box-shadow: 0 0 10px #00ffff;">>> COMMUNICATE (Twitter)</a>
+                <a href="mailto:your.email@example.com" class="cta-button" style="background-color: #ff00ff; color: #1a1a2e; margin-left: 15px;">>> E-MAIL SECURE (Mail)</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>[LOG] TERMINATED_SESSION_1029</p>
+        <p>&copy; 2025 K.K.NAKATA. All Rights Reserved. <a href="#">| PRIVACY_POLICY</a></p>
+    </footer>
 
 </body>
 </html>
